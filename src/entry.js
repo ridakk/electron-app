@@ -1,13 +1,12 @@
-require('./main.scss');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router'
+import Home from './components/home';
 
-const App = React.createClass({
-  render: function() {
-    return <div > < div className = "tech electron" > Electron < /div> + <div className="tech react">React</div > + < div className = "tech sass" > Sass < /div></div > ;
-  }
-});
-
-ReactDOM.render( < App / > , document.getElementById('react-root'));
+// Render the main app react component into the app div.
+// For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
+ReactDOM.render(
+  <Router history={hashHistory}>
+    <Route path='/' component={Home}/>
+  </Router>, document.getElementById('app')
+);
