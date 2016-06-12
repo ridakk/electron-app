@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Electron App</title>
+	<title>Archsight Log Checker</title>
 
-	<link type="text/css" href="http://localhost:8080/css/photon.min.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 </head>
 <body>
-	<div id="app"></div>
+	<div id="app" class="container-fluid"></div>
 
-  <script src="http://localhost:8080/build/bundle.js"></script>
+	<script>
+		(function() {
+			const script = document.createElement('script');
+			script.src = (typeof process !== 'undefined' && process.env.ENVIRONMENT === 'DEV') ? 'http://localhost:8080/build/bundle.js' : './build/bundle.js';
+			document.write(script.outerHTML);
+		}());
+	</script>
+	<script src=""></script>
 </body>
 </html>

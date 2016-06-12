@@ -17,6 +17,10 @@ app.on('window-all-closed', function () {
   }
 })
 
+electron.app.on('browser-window-created',function(e,window) {
+  window.setMenu(null);
+});
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
@@ -26,8 +30,11 @@ app.on('ready', function() {
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // Only open dev tools in dev environment
+  //if(process.env.ENVIRONMENT === 'DEV') {
+    // Open the DevTools.
+    mainWindow.openDevTools();
+  //}
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

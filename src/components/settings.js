@@ -1,39 +1,45 @@
 import React from 'react';
+import Folders from './folders';
+
+//const fs = require('fs');
 
 class Settings extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.onAddClick = this.onAddClick.bind(this);
+    this.state = {
+      folders: [{
+        path: '',
+        new: true,
+        active: false
+      }]
+    };
+  }
+
+  onAddClick(){
+    let folders = this.state.folders;
+
+    //if (!fs.existsSync(dir)){
+//fs.mkdirSync(dir);
+//}
+
+    folders.push({
+      path: ''
+    });
+    this.setState({
+      folders: folders
+    });
   }
 
   render() {
     return (
       <div>
         <form>
-          <div className="form-group">
-            <label>Email address</label>
-            <input type="email" className="form-control" placeholder="Email"/>
+          <div >
+            <Folders value={this.state.folders}/>
           </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" placeholder="Password"/>
-          </div>
-          <div className="form-group">
-            <label>Description</label>
-            <textarea className="form-control" rows="3"></textarea>
-          </div>
-          <select className="form-control">
-            <option>Option one</option>
-            <option>Option two</option>
-            <option>Option three</option>
-            <option>Option four</option>
-            <option>Option five</option>
-            <option>Option six</option>
-            <option>Option seven</option>
-            <option>Option eight</option>
-          </select>
-          <div className="form-actions">
-            <button type="submit" className="btn btn-form btn-default">Cancel</button>
-            <button type="submit" className="btn btn-form btn-primary">OK</button>
+          <div >
+            <button type="submit" className="btn btn-form btn-default" onClick={this.onAddClick}>Add</button>
           </div>
         </form>
       </div>

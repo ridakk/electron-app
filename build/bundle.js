@@ -60,10 +60,6 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _settings = __webpack_require__(230);
-
-	var _settings2 = _interopRequireDefault(_settings);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Render the main app react component into the app div.
@@ -71,8 +67,7 @@
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
 	  { history: _reactRouter.hashHistory },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _home2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/settings', component: _settings2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _home2.default })
 	), document.getElementById('app'));
 
 /***/ },
@@ -184,6 +179,11 @@
 	// shim for using process in browser
 
 	var process = module.exports = {};
+
+	// cached from whatever global is present so that test runners that stub it don't break things.
+	var cachedSetTimeout = setTimeout;
+	var cachedClearTimeout = clearTimeout;
+
 	var queue = [];
 	var draining = false;
 	var currentQueue;
@@ -208,7 +208,7 @@
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = cachedSetTimeout(cleanUpNextTick);
 	    draining = true;
 
 	    var len = queue.length;
@@ -225,7 +225,7 @@
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    cachedClearTimeout(timeout);
 	}
 
 	process.nextTick = function (fun) {
@@ -237,7 +237,7 @@
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        cachedSetTimeout(drainQueue, 0);
 	    }
 	};
 
@@ -25858,7 +25858,7 @@
 /* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25869,6 +25869,14 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _settings = __webpack_require__(230);
+
+	var _settings2 = _interopRequireDefault(_settings);
+
+	var _navBar = __webpack_require__(231);
+
+	var _navBar2 = _interopRequireDefault(_navBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25888,26 +25896,26 @@
 	  }
 
 	  _createClass(Home, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { "class": "window" },
+	        'div',
+	        { className: 'window' },
 	        _react2.default.createElement(
-	          "div",
-	          { "class": "window-content" },
+	          'div',
+	          { className: 'window-content' },
 	          _react2.default.createElement(
-	            "div",
-	            { "class": "pane-group" },
+	            'div',
+	            { className: 'pane-group' },
 	            _react2.default.createElement(
-	              "div",
-	              { "class": "pane-mini sidebar" },
-	              "S"
+	              'div',
+	              { className: 'pane-sm sidebar' },
+	              _react2.default.createElement(_navBar2.default, null)
 	            ),
 	            _react2.default.createElement(
-	              "div",
-	              { "class": "pane" },
-	              "P"
+	              'div',
+	              { className: 'pane' },
+	              _react2.default.createElement(_settings2.default, null)
 	            )
 	          )
 	        )
@@ -25924,7 +25932,7 @@
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25954,12 +25962,78 @@
 	  }
 
 	  _createClass(Settings, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
+	        "div",
 	        null,
-	        'HOME'
+	        _react2.default.createElement(
+	          "form",
+	          null,
+	          _react2.default.createElement(
+	            "div",
+	            { className: "form-group" },
+	            _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "Log file location" })
+	          ),
+	          _react2.default.createElement(
+	            "select",
+	            { className: "form-control" },
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option one"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option two"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option three"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option four"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option five"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option six"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option seven"
+	            ),
+	            _react2.default.createElement(
+	              "option",
+	              null,
+	              "Option eight"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "form-actions" },
+	            _react2.default.createElement(
+	              "button",
+	              { type: "submit", className: "btn btn-form btn-default" },
+	              "Cancel"
+	            ),
+	            _react2.default.createElement(
+	              "button",
+	              { type: "submit", className: "btn btn-form btn-primary" },
+	              "OK"
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -25968,6 +26042,70 @@
 	}(_react2.default.Component);
 
 	exports.default = Settings;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NavBar = function (_React$Component) {
+	  _inherits(NavBar, _React$Component);
+
+	  function NavBar(props) {
+	    _classCallCheck(this, NavBar);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NavBar).call(this, props));
+	  }
+
+	  _createClass(NavBar, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "nav",
+	          { className: "nav-group" },
+	          _react2.default.createElement(
+	            "a",
+	            { className: "nav-group-item active" },
+	            _react2.default.createElement("span", { className: "icon icon-home" }),
+	            "Home"
+	          ),
+	          _react2.default.createElement(
+	            "span",
+	            { className: "nav-group-item" },
+	            _react2.default.createElement("span", { className: "icon icon-cog" }),
+	            "Settings"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NavBar;
+	}(_react2.default.Component);
+
+	exports.default = NavBar;
 
 /***/ }
 /******/ ]);

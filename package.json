@@ -4,7 +4,7 @@
   "description": "electron application",
   "main": "main.js",
   "scripts": {
-    "start": "./node_modules/.bin/electron .",
+    "start": "cross-env ENVIRONMENT=PROD  ./node_modules/.bin/electron .",
     "build": "./node_modules/.bin/webpack",
     "watch": "./node_modules/.bin/webpack-dev-server --hot --inline"
   },
