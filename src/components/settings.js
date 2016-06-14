@@ -1,8 +1,6 @@
 import React from 'react';
 import Folders from './folders';
 
-//const fs = require('fs');
-
 class Settings extends React.Component {
   constructor(props) {
     super(props);
@@ -19,10 +17,6 @@ class Settings extends React.Component {
   onAddClick(){
     let folders = this.state.folders;
 
-    //if (!fs.existsSync(dir)){
-//fs.mkdirSync(dir);
-//}
-
     folders.push({
       path: ''
     });
@@ -37,9 +31,6 @@ class Settings extends React.Component {
         <form>
           <div >
             <Folders value={this.state.folders}/>
-          </div>
-          <div >
-            <button type="submit" className="btn btn-form btn-default" onClick={this.onAddClick}>Add</button>
           </div>
         </form>
       </div>

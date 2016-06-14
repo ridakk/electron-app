@@ -17,5 +17,7 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.scss|\.css$/, loader: 'style-loader!css-loader!sass-loader' }
     ]
-  }
+  },
+
+  target: 'electron-renderer'
 };

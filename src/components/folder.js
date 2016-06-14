@@ -1,5 +1,9 @@
 import React from 'react';
 
+var fs = require('fs');
+
+console.log("file system is: ", fs)
+
 class Folder extends React.Component {
   constructor(props) {
     super(props);
@@ -12,28 +16,15 @@ class Folder extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="text" className="form-control" placeholder="Log file location" disabled={this.props.disabled} defaultValue={this.props.path} onChange={this.onChange}></input>
-        <button type="submit" className="btn btn-form btn-default pull-right" onClick={this.onAddClick}>Add</button>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-              <input type="text" class="form-control" placeholder="Search for...">
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="input-group">
+              <input type="text" className="form-control" placeholder="Search for..."/>
+              <span className="input-group-btn">
+                <button className="btn btn-default" type="button">Go!</button>
               </span>
             </div>
           </div>
-        </div>
         </div>
     )
   }
